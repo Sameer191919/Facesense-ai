@@ -1,0 +1,31 @@
+# ======================
+# GLOBAL
+# ======================
+.env
+.env.local
+
+# ======================
+# PYTHON / FASTAPI
+# ======================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.venv/
+
+# ======================
+# NODE / REACT
+# ======================
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# ======================
+# OS / EDITOR
+# ======================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

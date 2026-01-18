@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-jose
+passlib[bcrypt]
+python-dotenv
+sqlalchemy
+pydantic
+transformers
+torch
+openai-whisper
+deepface
+opencv-python
+ffmpeg-python
+reportlab
