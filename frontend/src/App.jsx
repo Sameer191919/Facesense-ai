@@ -1,42 +1,65 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
-
+import MainLayout from "./layout/MainLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
+import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
-import AdminDashboard from "./pages/AdminDashboard";
-import UserProfile from "./pages/UserProfile";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
     <Routes>
+
+      {/* Public Routes */}
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
+      {/* Protected + With Layout */}
       <Route
         path="/dashboard"
-        element={<Dashboard darkMode={darkMode} setDarkMode={setDarkMode} />}
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          </ProtectedRoute>
+        }
       />
-      <Route
-        path="/interview"
-        element={<Interview darkMode={darkMode} setDarkMode={setDarkMode} />}
-      />
-      <Route
-        path="/feedback"
-        element={<Feedback darkMode={darkMode} setDarkMode={setDarkMode} />}
-      />
+
       <Route
         path="/profile"
-        element={<UserProfile darkMode={darkMode} setDarkMode={setDarkMode} />}
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Profile />
+            </MainLayout>
+          </ProtectedRoute>
+        }
       />
+
       <Route
-        path="/admin"
-        element={<AdminDashboard darkMode={darkMode} setDarkMode={setDarkMode} />}
+        path="/feedback"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Feedback />
+            </MainLayout>
+          </ProtectedRoute>
+        }
       />
+
+      {/* Interview WITHOUT Layout (Distraction Free Mode) */}
+      <Route
+        path="/interview"
+        element={
+          <ProtectedRoute>
+            <Interview />
+          </ProtectedRoute>
+        }
+      />
+
     </Routes>
   );
 }
